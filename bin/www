@@ -15,8 +15,6 @@ dotenv.config();
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-console.error(port)
-console.error(port)
 /**
  * Create HTTP server.
  */
