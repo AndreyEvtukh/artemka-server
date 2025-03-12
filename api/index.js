@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.get("/api", (req, res) => res.send("Express on Vercel 2"));
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+app.listen(3001, () => console.log("Server ready on port 3002."));
 
 module.exports = app;
