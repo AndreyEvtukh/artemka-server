@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('artemka-server:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('artemka-server:server');
+const http = require('http');
+const dotenv = require('dotenv')
+dotenv.config();
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +16,7 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+console.error(port)
 
 /**
  * Create HTTP server.
