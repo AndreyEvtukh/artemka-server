@@ -1,15 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var adaro = require('adaro');
-var cookieParser = require('cookie-parser');
-var lessMiddleware = require('less-middleware');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const adaro = require('adaro');
+const cookieParser = require('cookie-parser');
+const lessMiddleware = require('less-middleware');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.engine('dust', adaro.dust());
