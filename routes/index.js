@@ -3,8 +3,9 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  //res.render('index', { title: 'Express' });
   res.json("Hello World!");
+  res.send('GET home page');
   console.error(555)
 });
 

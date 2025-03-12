@@ -16,6 +16,7 @@ dotenv.config();
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 console.error(port)
+console.error(port)
 /**
  * Create HTTP server.
  */
@@ -38,12 +39,10 @@ function normalizePort(val) {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
     return val;
   }
 
   if (port >= 0) {
-    // port number
     return port;
   }
 
