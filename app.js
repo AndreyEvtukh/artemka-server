@@ -25,6 +25,11 @@ app.use('/api', apiRouter);
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
+    next();
+});
+
 const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
