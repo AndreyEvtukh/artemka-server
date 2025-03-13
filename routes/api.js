@@ -3,15 +3,21 @@ const nodemailer = require('nodemailer');
 const replacePlaceholders = require('../email/replacePlaceholders');
 const fs = require("fs");
 const router = express.Router();
+const cors = require('cors');
 
 const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
+
+const corsOptions = {
+    origin: process.env.MAILTRAP_FROM,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 router.get('/', (req, res) => {
     res.status(200)
 });
 
-router.post('/sendmail', async (req, res) => {
+router.post('/sendmail', cors(), async (req, res) => {
     try {
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
