@@ -9,7 +9,9 @@ const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 const corsOptions = {
-    origin: process.env.MAILTRAP_FROM,
+    origin: true,
+    methods: ["POST"],
+    credentials: true,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -17,7 +19,8 @@ router.get('/', (req, res) => {
     res.status(200)
 });
 
-router.post('/sendmail', cors(), async (req, res) => {
+router.options("/sendmail", cors(corsOptions));
+router.post('/sendmail', cors(corsOptions), async (req, res) => {
     try {
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
