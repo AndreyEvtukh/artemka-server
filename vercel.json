@@ -12,8 +12,6 @@
             "headers": [
                 { "key": "crossorigin", "value": "anonymous" },
                 { "key": "Access-Control-Allow-Credentials", "value": "true" },
-                { "key": "Access-Control-Allow-Origin", "value": "https://artemka.vercel.app" },
-                { "key": "Access-Control-Allow-Origin", "value": "https://artemka-dev.vercel.app" },
                 { "key": "Access-Control-Allow-Origin", "value": "*" },
                 {
                     "key": "Access-Control-Allow-Methods",
