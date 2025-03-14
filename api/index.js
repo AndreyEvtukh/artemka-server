@@ -21,9 +21,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 
-// const port = process.env.PORT || 3000;
-// console.error(port)
-// app.set('port', port);
+const port = process.env.PORT || 3000;
+console.error(port)
+app.set('port', port);
 
 // app.use((req, res, next) => {
 //     // res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
@@ -32,7 +32,7 @@ app.use('/api', apiRouter);
 // });
 
 // const server = http.createServer(app);
-// app.listen(port);
+app.listen(port);
 // server.on('error', onError);
 // server.on('listening', onListening);
 // server.keepAlive = true;

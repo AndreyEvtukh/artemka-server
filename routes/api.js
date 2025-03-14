@@ -21,10 +21,11 @@ app.get('/', (req, res) => {
     res.status(200)
 });
 //
+console.error(4)
 // router.options("/sendmail", cors(corsOptions));
-app.get('/sendmail', async (req, res) => {
+router.get('/sendmail', async (req, res) => {
+    console.error(1)
     try {
-        console.error(1)
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
             return res.status(400).json({error: 'Missing required fields'});
