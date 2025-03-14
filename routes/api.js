@@ -59,7 +59,7 @@ router.post('/sendmail', async (req, res) => {
 
         res.status(200).json({ok: true, statusText: 'email_successfully_sent'});
     } catch (error) {
-        res.status(500).json({error: 'error_sending_email'});
+        res.status(5001).json({error: 'error_sending_email'});
     }
 
     res.end();
