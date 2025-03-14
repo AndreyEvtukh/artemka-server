@@ -6,12 +6,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv');
+const apiRouter = require('../routes/api');
+const allowCors = require("../routes/allowCors");
+const app = express();
 
 dotenv.config();
-
-const apiRouter = require('../routes/api');
-const app = express();
-console.error(8)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(
@@ -26,7 +25,8 @@ const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
+    // res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
+    allowCors(req, res);
     next();
 });
 
