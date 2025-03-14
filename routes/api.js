@@ -37,7 +37,7 @@ router.post('/sendmail', async (req, res) => {
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: process.env.SMTP_PORT,
-            secure: true,
+            // secure: true,
             auth: {
                 user: process.env.MAILTRAP_USER,
                 pass: atob(process.env.MAILTRAP_PASS)
@@ -50,8 +50,8 @@ router.post('/sendmail', async (req, res) => {
             to: [process.env.MAILTRAP_USER],
             subject: `New message from ${name} with subject ${subject}`,
             text: `New 55 message \n\nSubject: ${subject}\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n\n${message}`,
-            html: emailHtml,
-            attachments: attachmentData ? [attachmentData] : []
+            html: emailHtml
+            // attachments: attachmentData ? [attachmentData] : []
         };
 
         const info = await transporter.sendMail(mailOptions);
