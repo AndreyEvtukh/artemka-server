@@ -1,5 +1,7 @@
-import express, { Request, Response } from 'express';
-import { Resend } from 'resend';
+const express = require('express');
+// const Resend = require('resend');
+
+// import { Resend } from 'resend';
 
 const app = express();
 const nodemailer = require('nodemailer');
@@ -27,24 +29,24 @@ console.error(4)
 // router.options("/sendmail", cors(corsOptions));
 
 
+import { Resend } from 'resend';
 
-const resend = new Resend('re_123456789');
-app.post('/sendmail', async (req, res) => {
-    const { data, error } = await resend.emails.send({
+router.post('/sendmail', (req, res) => {
+    console.error(2222)
+    const resend = new Resend('re_iS94Jicb_P5nyUiNgsLKnkk75sx3tMiSN');
+    resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: process.env.MAILTRAP_USER,
+        to: 'andrey.evtukh@gmail.com',
         subject: 'Hello World',
-        html: '<strong>it works!</strong>',
+        html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
+    }).then(() => {
+        res.status(200).json({ok: true, statusText: 'email_successfully_sent'});
     });
 
-    if (error) {
-        return res.status(400).json(error);
-    }
-
-    return res.status(200).json(data);
+    res.end();
 })
 
-router.get('/sendmail.111', async (req, res) => {
+router.post('/sendmail.111', async (req, res) => {
     console.error(1)
     try {
         const {name, subject, email, message} = req.body;

@@ -13,17 +13,17 @@
     },
     "homepage": "https://github.com/AndreyEvtukh/artemka-server#readme",
     "dependencies": {
-        "fs": "^0.0.1-security",
-        "nodemailer": "^6.10.0",
-        "http-errors": "^2.0.0",
         "body-parser": "^1.20.3",
         "cookie-parser": "^1.4.7",
         "cors": "^2.8.5",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
-        "vercel": "^41.4.1",
+        "fs": "^0.0.1-security",
+        "http-errors": "^2.0.0",
         "morgan": "^1.10.0",
-        "resend": "^4.1.2"
+        "nodemailer": "^6.10.0",
+        "resend": "^4.1.2",
+        "vercel": "^41.4.1"
     },
     "devDependencies": {
         "nodemon": "^3.1.9",
