@@ -14,14 +14,16 @@ const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-
+console.error(3)
 router.get('/', (req, res) => {
+    console.error(4)
     res.status(200)
 });
 
-router.options("/sendmail", cors(corsOptions));
+// router.options("/sendmail", cors(corsOptions));
 router.post('/sendmail', async (req, res) => {
     try {
+        console.error(1)
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
             return res.status(400).json({error: 'Missing required fields'});

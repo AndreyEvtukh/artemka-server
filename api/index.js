@@ -11,7 +11,7 @@ dotenv.config();
 
 const apiRouter = require('../routes/api');
 const app = express();
-
+console.error(8)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(

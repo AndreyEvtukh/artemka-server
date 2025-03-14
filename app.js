@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
-
+console.error(9)
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
