@@ -11,17 +11,17 @@ const apiRouter = require('../routes/api');
 const app = express();
 
 dotenv.config();
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 // app.use(
 //     cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
 // );
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = process.env.PORT || 3000;
 app.set('port', port);
 
 // app.use((req, res, next) => {
@@ -31,24 +31,24 @@ app.set('port', port);
 // });
 
 // const server = http.createServer(app);
-app.listen(port);
+// app.listen(port);
 // server.on('error', onError);
 // server.on('listening', onListening);
 // server.keepAlive = true;
 
-function normalizePort(val) {
-    const port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        return val;
-    }
-
-    if (port >= 0) {
-        return port;
-    }
-
-    return false;
-}
+// function normalizePort(val) {
+//     const port = parseInt(val, 10);
+//
+//     if (isNaN(port)) {
+//         return val;
+//     }
+//
+//     if (port >= 0) {
+//         return port;
+//     }
+//
+//     return false;
+// }
 
 // function onError(error) {
 //     if (error.syscall !== 'listen') {
