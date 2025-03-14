@@ -10,6 +10,7 @@
         {
             "source": "/(.*)",
             "headers": [
+                { "key": "crossorigin", "value": "anonymous" },
                 { "key": "Access-Control-Allow-Origin", "value": "*" }
             ]
         }
