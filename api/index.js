@@ -1,7 +1,7 @@
 const express = require('express');
 const debug = require('debug')('artemka-server:server');
 const http = require('http');
-// const cors = require('cors');
+const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -11,17 +11,18 @@ const apiRouter = require('../routes/api');
 const app = express();
 
 dotenv.config();
-// app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(express.json());
-// app.use(
-//     cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
-// );
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/api', apiRouter);
+app.use(
+    cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app']})
+);
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', apiRouter);
 
 const port = process.env.PORT || 3000;
+console.error(port)
 app.set('port', port);
 
 // app.use((req, res, next) => {
@@ -31,7 +32,7 @@ app.set('port', port);
 // });
 
 // const server = http.createServer(app);
-// app.listen(port);
+app.listen(port);
 // server.on('error', onError);
 // server.on('listening', onListening);
 // server.keepAlive = true;
