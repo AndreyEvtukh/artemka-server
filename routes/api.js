@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const nodemailer = require('nodemailer');
 const replacePlaceholders = require('../email/replacePlaceholders');
 // const allowCors = require('./allowCors');
@@ -21,7 +22,7 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 // });
 //
 // router.options("/sendmail", cors(corsOptions));
-router.post('/sendmail', async (req, res) => {
+app.post('/sendmail', async (req, res) => {
     try {
         console.error(1)
         const {name, subject, email, message} = req.body;
@@ -44,15 +45,15 @@ router.post('/sendmail', async (req, res) => {
         //     }
         // });
 
-        const emailHtml = replacePlaceholders(templateContent, {name, subject, email, message});
-        const mailOptions = {
-            from: process.env.MAILTRAP_FROM,
-            to: [process.env.MAILTRAP_USER],
-            subject: `New message from ${name} with subject ${subject}`,
-            text: `New 55 message \n\nSubject: ${subject}\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n\n${message}`,
-            html: emailHtml
-            // attachments: attachmentData ? [attachmentData] : []
-        };
+        // const emailHtml = replacePlaceholders(templateContent, {name, subject, email, message});
+        // const mailOptions = {
+        //     from: process.env.MAILTRAP_FROM,
+        //     to: [process.env.MAILTRAP_USER],
+        //     subject: `New message from ${name} with subject ${subject}`,
+        //     text: `New 55 message \n\nSubject: ${subject}\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n\n${message}`,
+        //     html: emailHtml
+        //     // attachments: attachmentData ? [attachmentData] : []
+        // };
 
         // const info = await transporter.sendMail(mailOptions);
         // console.log('Email sent:', info.response);
