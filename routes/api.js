@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
     res.status(200)
 });
 
-router.options("/sendmail", cors());
+router.options("/sendmail", cors(corsOptions));
 router.post('/sendmail', async (req, res) => {
     try {
         console.error(1)
