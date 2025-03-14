@@ -8,7 +8,7 @@ const logger = require('morgan');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
+console.error(9)
 const apiRouter = require('./routes/api');
 const app = express();
 

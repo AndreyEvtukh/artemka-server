@@ -20,10 +20,6 @@ router.get('/', (req, res) => {
 });
 
 router.options("/sendmail", cors(corsOptions));
-// router.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app/api/sendmail');
-//     next();
-// });
 router.post('/sendmail', async (req, res) => {
     try {
         const {name, subject, email, message} = req.body;
