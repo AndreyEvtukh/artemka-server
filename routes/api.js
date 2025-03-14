@@ -10,7 +10,7 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 const corsOptions = {
     origin: true,
-    methods: ["POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.options("/sendmail", cors(corsOptions));
 router.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app/api/sendmail');
     next();
 });
 router.post('/sendmail', cors(corsOptions), async (req, res) => {
