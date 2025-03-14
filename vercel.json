@@ -5,5 +5,13 @@
             "source": "/(.*)",
             "destination": "/api"
         }
+    ],
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                { "key": "Access-Control-Allow-Origin", "value": "https://artemka-server.vercel.app" }
+            ]
+        }
     ]
 }
