@@ -16,13 +16,13 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 // }
 // console.error(3)
-// router.get('/', (req, res) => {
-//     console.error(4)
-//     res.status(200)
-// });
+app.get('/', (req, res) => {
+    console.error(4)
+    res.status(200)
+});
 //
 // router.options("/sendmail", cors(corsOptions));
-app.post('/sendmail', async (req, res) => {
+app.get('/sendmail', async (req, res) => {
     try {
         console.error(1)
         const {name, subject, email, message} = req.body;
