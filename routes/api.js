@@ -10,17 +10,17 @@ const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 
-// const corsOptions = {
-//     origin: 'https://artemka-server.vercel.app',
-//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// }
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 // console.error(3)
 // router.get('/', (req, res) => {
 //     console.error(4)
 //     res.status(200)
 // });
 //
-// router.options("/sendmail", cors(corsOptions));
+router.options("/sendmail", cors(corsOptions));
 router.post('/sendmail', async (req, res) => {
     try {
         console.error(1)
