@@ -29,10 +29,10 @@ router.post('/sendmail', async (req, res) => {
             return res.status(400).json({error: 'Missing required fields'});
         }
 
-        const attachmentData = req.file ? {
-            filename: req.file.originalname,
-            content: req.file.buffer
-        } : null;
+        // const attachmentData = req.file ? {
+        //     filename: req.file.originalname,
+        //     content: req.file.buffer
+        // } : null;
 
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
