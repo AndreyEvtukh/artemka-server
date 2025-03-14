@@ -14,9 +14,9 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(
-    cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
-);
+// app.use(
+//     cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
+// );
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,10 +25,10 @@ app.use('/api', apiRouter);
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
+//     next();
+// });
 
 const server = http.createServer(app);
 server.listen(port);
