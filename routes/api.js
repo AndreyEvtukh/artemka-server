@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const replacePlaceholders = require('../email/replacePlaceholders');
-const allowCors = require('./allowCors');
+// const allowCors = require('./allowCors');
 const fs = require("fs");
 const router = express.Router();
 const cors = require('cors');
