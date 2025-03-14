@@ -9,9 +9,7 @@ const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 const corsOptions = {
-    origin: true,
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true,
+    origin: 'https://artemka-server.vercel.app',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 console.error(3)
