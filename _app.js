@@ -10,11 +10,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const apiRouter = require('./routes/api');
-const app = express();
+const _app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(cors());
+_app.use(logger('dev'));
+_app.use(express.json());
+_app.use(cors());
 // app.use(
 //     // cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
 //     cors({
@@ -22,20 +22,20 @@ app.use(cors());
 //         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
 //     })
 // );
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api', apiRouter);
+_app.use(express.urlencoded({ extended: false }));
+_app.use(cookieParser());
+_app.use(express.static(path.join(__dirname, 'public')));
+_app.use('/api', apiRouter);
 
 const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+_app.set('port', port);
 
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');
 //     next();
 // });
 
-const server = http.createServer(app);
+const server = http.createServer(_app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -87,4 +87,4 @@ function onListening() {
     debug('Listening on ' + bind);
 }
 
-module.exports = app;
+module.exports = _app;

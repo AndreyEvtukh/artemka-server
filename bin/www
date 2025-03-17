@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const app = require('../app');
+const app = require('../_app');
 const debug = require('debug')('artemka-server:server');
 const http = require('http');
 const dotenv = require('dotenv');

@@ -10,6 +10,7 @@ const allowCors = require('./allowCors');
 const fs = require("fs");
 const router = express.Router();
 const cors = require('cors');
+const send = require("./send");
 
 const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
@@ -53,8 +54,13 @@ const corsOptions = {
 //     next();
 // });
 
-// router.options("/sendmail", cors(corsOptions));
 router.post('/sendmail', async (req, res) => {
+    await send(req, res)
+    console.error(6666)
+})
+
+// router.options("/sendmail", cors(corsOptions));
+router.post('/sendmail1111', async (req, res) => {
     try {
         const {name, subject, email, message} = req.body;
         console.error(12, req.body )
