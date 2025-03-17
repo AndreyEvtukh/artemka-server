@@ -8,7 +8,7 @@
     ],
     "headers": [
         {
-            "source": "/api/sendmail",
+            "source": "/(.*)",
             "headers": [
                 { "key": "crossorigin", "value": "anonymous" },
                 { "key": "Access-Control-Allow-Credentials", "value": "true" },

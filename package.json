@@ -30,8 +30,7 @@
         "yarn": "^1.22.22"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon app.js"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "description": ""
 }
