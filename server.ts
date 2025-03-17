@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-// import { WaitlistEmail } from '../transactional/emails/waitlist';
 import { resend } from './lib/resend';
 
 const app = express();
@@ -7,10 +6,10 @@ const app = express();
 app.post('/api/sendmail', async (req: Request, res: Response) => {
   try {
     const emailData = {
-        from: 'onboarding@resend.dev',
-        to: 'andrey.evtukh@gmail.com',
-        subject: 'Hello World',
-        html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
+      from: 'onboarding@resend.dev',
+      to: 'andrey.evtukh@gmail.com',
+      subject: 'Hello World',
+      html: '<p>Congrats on sending your <strong>first email</strong>!</p>',
     };
 
     const { data } = await resend.emails.send(emailData);
@@ -21,7 +20,7 @@ app.post('/api/sendmail', async (req: Request, res: Response) => {
   }
 });
 
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

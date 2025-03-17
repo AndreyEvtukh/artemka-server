@@ -14,7 +14,14 @@ dotenv.config();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(
-    cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app']})
+  cors({
+    origin: [
+      'http://localhost:4201',
+      'http://localhost:3001',
+      'https://artemka-dev.vercel.app',
+      'https://artemka-server.vercel.app',
+    ],
+  }),
 );
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -22,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 
 const port = process.env.PORT || 3000;
-console.error(port)
+console.error(port);
 app.set('port', port);
 
 // app.use((req, res, next) => {
