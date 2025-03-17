@@ -12,6 +12,7 @@
         "url": "https://github.com/AndreyEvtukh/artemka-server/issues"
     },
     "homepage": "https://github.com/AndreyEvtukh/artemka-server#readme",
+    "main": "server.ts",
     "dependencies": {
         "body-parser": "^1.20.3",
         "cookie-parser": "^1.4.7",
