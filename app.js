@@ -14,6 +14,7 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cors());
 // app.use(
 //     cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
 // );
