@@ -1,12 +1,12 @@
 const express = require('express');
-// const Resend = require('resend');
+const Resend = require('resend');
 
 // import { Resend } from 'resend';
 
 const app = express();
 const nodemailer = require('nodemailer');
 const replacePlaceholders = require('../email/replacePlaceholders');
-// const allowCors = require('./allowCors');
+const allowCors = require('./allowCors');
 const fs = require("fs");
 const router = express.Router();
 const cors = require('cors');
@@ -17,6 +17,7 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 const corsOptions = {
     origin: '*',
+    "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 // console.error(3)
@@ -31,7 +32,7 @@ const corsOptions = {
 
 // import { Resend } from 'resend';
 
-// router.post('/sendmail', (req, res) => {
+// router.put('/sendmail', (req, res) => {
 //     console.error(2222)
 //     const resend = new Resend('re_iS94Jicb_P5nyUiNgsLKnkk75sx3tMiSN');
 //     resend.emails.send({
@@ -45,14 +46,31 @@ const corsOptions = {
 //
 //     res.end();
 // })
-router.options("/sendmail", cors(corsOptions));
-router.put('/sendmail', async (req, res) => {
+
+// router.use(async (req, res, next) => {
+//     console.error(11)
+//     await allowCors(req, res);
+//     next();
+// });
+
+// router.options("/sendmail", cors(corsOptions));
+router.post('/sendmail', async (req, res) => {
     try {
-        console.error(req.body)
+        console.error(12, req.body)
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
             return res.status(400).json({error: 'Missing required fields'});
         }
+
+        res.setHeader('Access-Control-Allow-Credentials', true)
+        res.setHeader('Access-Control-Allow-Origin', '*')
+        // another common pattern
+        // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+        res.setHeader(
+            'Access-Control-Allow-Headers',
+            'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+        )
 
         const attachmentData = req.file ? {
             filename: req.file.originalname,
@@ -81,18 +99,13 @@ router.put('/sendmail', async (req, res) => {
 
         const info = await transporter.sendMail(mailOptions);
         // res.json(JSON.parse(info))
-        // console.log('1 Email sent:', info);
+        console.log('1 Email sent:', info);
 
-        res.status(200).json({
-            ok: true,
-            statusText: 'email_successfully_sent',
-            info: info
-        });
+        res.status(200).json({ ok: true });
     } catch (error) {
         console.log('2 Email sent ERROR:', error);
-        res.status(5001).json({
-            error: 'error_sending_email',
-            data:error
+        res.status(500).json({
+            error: 'error_sending_email'
         });
     }
 

@@ -16,7 +16,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(cors());
 // app.use(
-//     cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
+//     // cors({origin: ['http://localhost:4201', 'http://localhost:3001', 'https://artemka-server.vercel.app']})
+//     cors({
+//         origin: '*',
+//         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+//     })
 // );
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
