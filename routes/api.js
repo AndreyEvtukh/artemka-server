@@ -46,7 +46,7 @@ const corsOptions = {
 //     res.end();
 // })
 router.options("/sendmail", cors());
-router.all('/sendmail', async (req, res) => {
+router.put('/sendmail', async (req, res) => {
     try {
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
