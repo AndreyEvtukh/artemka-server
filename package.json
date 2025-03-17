@@ -43,8 +43,7 @@
         "yarn": "^1.22.22"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ts-node src/server.ts"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "description": ""
 }
