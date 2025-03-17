@@ -56,8 +56,8 @@ const corsOptions = {
 // router.options("/sendmail", cors(corsOptions));
 router.post('/sendmail', async (req, res) => {
     try {
-        console.error(12, req.body)
         const {name, subject, email, message} = req.body;
+        console.error(12, req.body )
         if (!name || !subject || !email || !message) {
             return res.status(400).json({error: 'Missing required fields'});
         }
