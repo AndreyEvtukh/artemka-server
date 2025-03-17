@@ -16,7 +16,6 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 
 const corsOptions = {
-    "Access-Control-Allow-Origin": "*",
     origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -46,8 +45,8 @@ const corsOptions = {
 //
 //     res.end();
 // })
-router.options("/sendmail", cors(corsOptions));
-router.post('/sendmail', async (req, res) => {
+router.options("/sendmail", cors());
+router.all('/sendmail', async (req, res) => {
     try {
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
@@ -71,7 +70,7 @@ router.post('/sendmail', async (req, res) => {
 
         const emailHtml = replacePlaceholders(templateContent, {name, subject, email, message});
         const mailOptions = {
-            from: process.env.MAILTRAP_FROM,
+            from: "Newmessage@ddd.ddd",
             to: [process.env.MAILTRAP_USER],
             subject: `New message from ${name} with subject ${subject}`,
             text: `New 55 message \n\nSubject: ${subject}\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n\n${message}`,
@@ -80,12 +79,20 @@ router.post('/sendmail', async (req, res) => {
         };
 
         const info = await transporter.sendMail(mailOptions);
-        console.log('1 Email sent:', info.response);
+        // res.json(JSON.parse(info))
+        console.log('1 Email sent:', info);
 
-        res.status(200).json({ok: true, statusText: 'email_successfully_sent'});
+        res.status(200).json({
+            ok: true,
+            statusText: 'email_successfully_sent',
+            info: info
+        });
     } catch (error) {
         console.log('2 Email sent ERROR:', error);
-        res.status(5001).json({error: 'error_sending_email'});
+        res.status(5001).json({
+            error: 'error_sending_email',
+            data:error
+        });
     }
 
     res.end();
