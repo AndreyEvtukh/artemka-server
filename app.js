@@ -8,7 +8,7 @@ const logger = require('morgan');
 const dotenv = require('dotenv');
 
 dotenv.config();
-console.error(9)
+
 const apiRouter = require('./routes/api');
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
-console.error(9)
+
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
