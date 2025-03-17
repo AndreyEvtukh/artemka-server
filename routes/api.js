@@ -45,9 +45,10 @@ const corsOptions = {
 //
 //     res.end();
 // })
-router.options("/sendmail", cors());
+router.options("/sendmail", cors(corsOptions));
 router.put('/sendmail', async (req, res) => {
     try {
+        console.error(req.body)
         const {name, subject, email, message} = req.body;
         if (!name || !subject || !email || !message) {
             return res.status(400).json({error: 'Missing required fields'});
@@ -80,7 +81,7 @@ router.put('/sendmail', async (req, res) => {
 
         const info = await transporter.sendMail(mailOptions);
         // res.json(JSON.parse(info))
-        console.log('1 Email sent:', info);
+        // console.log('1 Email sent:', info);
 
         res.status(200).json({
             ok: true,
