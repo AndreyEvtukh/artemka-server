@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.use(cors({
-    origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization'],
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Authorization'],
+//     credentials: true,
+// }));
 
 app.use((req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -32,6 +32,13 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/send', async (req: Request, res: Response) => {
+    resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: [process.env.MAILTRAP_USER],
+        subject: 'Hello World',
+        html: '<strong>It works!</strong>'
+    });
+
     const {name, subject, email, message} = req.body;
     if (!name || !subject || !email || !message) {
         return res.status(400).json({error: 'Missing required fields'});
