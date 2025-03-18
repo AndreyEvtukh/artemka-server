@@ -7,15 +7,28 @@ import cors from "cors";
 
 const replacePlaceholders = require('./email/replacePlaceholders');
 const app: Application = express();
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-app.use(cors())
+
+app.use(cors({
+    origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization'],
+    credentials: true,
+}));
+
+
+app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+});
 
 app.post('/api/send', async (req: Request, res: Response) => {
     const {name, subject, email, message} = req.body;
