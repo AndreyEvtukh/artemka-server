@@ -1,6 +1,6 @@
 import {Request, Response, Application} from 'express';
 import express from 'express'
-import {resend} from './lib/resend';
+// import {resend} from './lib/resend';
 import bodyParser from "body-parser";
 import fs from "fs";
 import cors from "cors";
@@ -15,6 +15,24 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+
+import { Resend } from 'resend';
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+(async function() {
+    try {
+        const data = await resend.emails.send({
+            from: 'Acme <onboarding@resend.dev>',
+            to: [process.env.MAILTRAP_USER],
+            subject: 'Hello World',
+            html: '<strong>It works!</strong>'
+        });
+
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+})();
 
 app.use(cors({
     origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
