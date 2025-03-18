@@ -4,6 +4,7 @@ import {resend} from './lib/resend';
 import bodyParser from "body-parser";
 import fs from "fs";
 import cors from "cors";
+import http from "http";
 
 const replacePlaceholders = require('./email/replacePlaceholders');
 const app: Application = express();
@@ -75,9 +76,9 @@ app.post('/api/send', async (req: Request, res: Response) => {
     res.end();
 });
 
-// const server = http.createServer(app);
-// server.listen(3000, () => {
-//     console.log('Listening on http://localhost:3000');
-// });
+const server = http.createServer(app);
+server.listen(3000, () => {
+    console.log('Listening on http://localhost:3000');
+});
 
 export default app;
