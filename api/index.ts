@@ -1,11 +1,11 @@
 import {Request, Response, Application} from 'express';
 import express from 'express'
-import {resend} from './lib/resend';
+import {resend} from '../lib/resend';
 import bodyParser from "body-parser";
 import fs from "fs";
 import cors from "cors";
 
-const replacePlaceholders = require('./email/replacePlaceholders');
+const replacePlaceholders = require('../email/replacePlaceholders');
 const app: Application = express();
 const dotenv = require('dotenv');
 dotenv.config();
