@@ -4,18 +4,19 @@ import {resend} from './lib/resend';
 import http from "http";
 import bodyParser from "body-parser";
 import fs from "fs";
+import cors from "cors";
 
 const replacePlaceholders = require('./email/replacePlaceholders');
 const app: Application = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-
 const templatePath = 'email/email-template.html';
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.post('/api/send', async (req: Request, res: Response) => {
     const {name, subject, email, message} = req.body;
