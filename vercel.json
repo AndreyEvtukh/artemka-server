@@ -8,7 +8,7 @@
     ],
     "headers": [
         {
-            "source": "/api/(.*)",
+            "source": "/api/send",
             "headers": [
                 { "key": "Access-Control-Allow-Credentials", "value": "true" },
                 { "key": "Access-Control-Allow-Origin", "value": "https://artemka-server.vercel.app/api/send" },
