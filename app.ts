@@ -65,11 +65,18 @@ app.all("/", (req: Request, res: Response) => {
 })
 
 app.post('/api/send', async (req: Request, res: Response) => {
+    resend.emails.send({
+                from: 'Acme <onboarding@resend.dev>',
+                to: [process.env.MAILTRAP_USER],
+                subject: 'Hello World',
+                html: '<strong>It works!</strong>'
+            });
     const {name, subject, email, message} = req.body;
+
     if (!name || !subject || !email || !message) {
         return res.status(400).json({error: 'Missing required fields'});
     }
-
+    console.error(121212)
     try {
         const emailHtml = replacePlaceholders(templateContent, {
             name,
@@ -101,12 +108,12 @@ app.post('/api/send', async (req: Request, res: Response) => {
 const server = http.createServer(app);
 server.listen(3000, () => {
     console.log('Listening on - http://localhost:3000');
-    resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
-            to: [process.env.MAILTRAP_USER],
-            subject: 'Hello World',
-            html: '<strong>It works!</strong>'
-        });
+    // resend.emails.send({
+    //         from: 'Acme <onboarding@resend.dev>',
+    //         to: [process.env.MAILTRAP_USER],
+    //         subject: 'Hello World',
+    //         html: '<strong>It works!</strong>'
+    //     });
 });
 
 export default app;
