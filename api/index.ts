@@ -23,6 +23,11 @@ app.post('/api/send', async (req: Request, res: Response) => {
         return res.status(400).json({error: 'Missing required fields'});
     }
 
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
     try {
         const emailHtml = replacePlaceholders(templateContent, {
             name,
