@@ -19,46 +19,50 @@ app.use(bodyParser.json())
 import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-(async function() {
-    try {
-        const data = await resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
-            to: [process.env.MAILTRAP_USER],
-            subject: 'Hello World',
-            html: '<strong>It works!</strong>'
-        });
+// (async function() {
+//     try {
+//         const data = await resend.emails.send({
+//             from: 'Acme <onboarding@resend.dev>',
+//             to: [process.env.MAILTRAP_USER],
+//             subject: 'Hello World',
+//             html: '<strong>It works!</strong>'
+//         });
+//
+//         console.log(data);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+app.use(cors())
+// app.use(cors({
+//     origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Authorization'],
+//     credentials: true,
+// }));
 
-        console.log(data);
-    } catch (error) {
-        console.error(error);
-    }
-})();
 
-app.use(cors({
-    origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization'],
-    credentials: true,
-}));
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader(
+//         'Access-Control-Allow-Methods',
+//         'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+//     );
+//     res.setHeader(
+//         'Access-Control-Allow-Headers',
+//         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+//     );
+//
+//     if (req.method === 'OPTIONS') {
+//         return res.status(200).end();
+//     }
+//     next();
+// });
 
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-        'Access-Control-Allow-Methods',
-        'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-    );
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-    );
-
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-    next();
-});
+app.all("/", (req: Request, res: Response) => {
+    console.error(12)
+})
 
 app.post('/api/send', async (req: Request, res: Response) => {
     const {name, subject, email, message} = req.body;
@@ -80,11 +84,11 @@ app.post('/api/send', async (req: Request, res: Response) => {
             subject: `New message from ${name} with subject ${subject}`,
             html: emailHtml
         };
-        const {error} = await resend.emails.send(emailData);
+        // const {error} = await resend.emails.send(emailData);
 
-        if (error) {
-            return res.status(400).json({error});
-        }
+        // if (error) {
+        //     return res.status(400).json({error});
+        // }
 
         res.status(200).json({ok: true});
     } catch (error) {
@@ -96,7 +100,13 @@ app.post('/api/send', async (req: Request, res: Response) => {
 
 const server = http.createServer(app);
 server.listen(3000, () => {
-    console.log('Listening on http://localhost:3000');
+    console.log('Listening on - http://localhost:3000');
+    resend.emails.send({
+            from: 'Acme <onboarding@resend.dev>',
+            to: [process.env.MAILTRAP_USER],
+            subject: 'Hello World',
+            html: '<strong>It works!</strong>'
+        });
 });
 
 export default app;
