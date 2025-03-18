@@ -1,26 +1,59 @@
-import { express } from 'express';
-import { Resend } from 'resend';
+import {Request, Response, Application} from 'express';
+import express from 'express'
+import {resend} from './lib/resend';
+import http from "http";
+import bodyParser from "body-parser";
+import fs from "fs";
 
-const app = express();
-const resend = new Resend('re_123456789');
-console.log('88');
-app.get('/api/sendmail', async (req, res) => {
-  console.error('Sending mail');
-  const { data, error } = await resend.emails.send({
-    from: 'Acme <onboarding@resend.dev>',
-    to: ['delivered@resend.dev'],
-    subject: 'hello world',
-    html: '<strong>it works!</strong>',
-  });
+const replacePlaceholders = require('./email/replacePlaceholders');
+const app: Application = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
-  if (error) {
-    return res.status(400).json({ error });
-  }
 
-  res.status(200).json({ data });
+const templatePath = 'email/email-template.html';
+const templateContent = fs.readFileSync(templatePath, 'utf-8');
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
+app.post('/api/send', async (req: Request, res: Response) => {
+    const {name, subject, email, message} = req.body;
+    if (!name || !subject || !email || !message) {
+        return res.status(400).json({error: 'Missing required fields'});
+    }
+
+    try {
+        const emailHtml = replacePlaceholders(templateContent, {
+            name,
+            subject,
+            email,
+            message,
+        });
+
+        const emailData = {
+            from: process.env.MAILTRAP_FROM,
+            to: process.env.MAILTRAP_USER,
+            subject: `New message from ${name} with subject ${subject}`,
+            html: emailHtml
+        };
+        const {error} = await resend.emails.send(emailData);
+
+        if (error) {
+            return res.status(400).json({error});
+        }
+
+        res.status(200).json({ok: true});
+    } catch (error) {
+        res.status(500).json({ok: false, error: error});
+    }
+
+    res.end();
 });
 
-app.listen(3001, () => {
-  console.log('88');
-  console.log('Listening on http://localhost:3000');
+const server = http.createServer(app);
+server.listen(3000, () => {
+    console.log('Listening on http://localhost:3000');
 });
+
+export default app;

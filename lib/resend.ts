@@ -1,3 +1,5 @@
 import { Resend } from 'resend';
+const dotenv = require('dotenv');
+dotenv.config();
 
-export const resend = new Resend('re_iS94Jicb_P5nyUiNgsLKnkk75sx3tMiSN');
+export const resend = new Resend(process.env.RESEND_URL);
