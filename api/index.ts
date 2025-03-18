@@ -2,8 +2,8 @@ import express, { Request, Response } from 'express';
 import { resend } from '../lib/resend';
 
 const app = express();
-console.log(9999)
-app.post('/api/sendmail', async (req: Request, res: Response) => {
+
+app.post('/api/send', async (req: Request, res: Response) => {
   try {
     const emailData = {
       from: 'onboarding@resend.dev',
@@ -20,9 +20,9 @@ app.post('/api/sendmail', async (req: Request, res: Response) => {
   }
 });
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// const port = 3000;
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
 
 export default app;

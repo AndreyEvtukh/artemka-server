@@ -11,6 +11,7 @@ const apiRouter = require('../routes/api');
 const app = express();
 
 dotenv.config();
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(
@@ -29,8 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiRouter);
 
 const port = process.env.PORT || 3000;
-console.error(port);
-app.set('port', port);
+console.error(" wwwww ", port);
+app.set('port ', port);
 
 // app.use((req, res, next) => {
 //     // res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app');

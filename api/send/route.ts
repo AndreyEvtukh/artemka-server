@@ -14,7 +14,7 @@ export async function POST() {
             html: '<strong>it works!</strong>',
         }),
     });
-
+    console.error(222)
     if (res.ok) {
         const data = await res.json();
         return Response.json(data);
