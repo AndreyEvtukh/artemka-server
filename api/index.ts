@@ -35,7 +35,6 @@ app.use("/api/send", (req, res, next) => {
     next();
 });
 
-
 app.post('/api/send', async (req: Request, res: Response) => {
     console.error(111)
 })
