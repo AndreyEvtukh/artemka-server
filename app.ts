@@ -69,6 +69,8 @@ app.post('/api/send', async (req: Request, res: Response) => {
     //             html: '<strong>It works!</strong>'
     //         });
     console.error(121212)
+    return res.status(200).json({"ok": true});
+
     const {name, subject, email, message} = req.body;
 
     if (!name || !subject || !email || !message) {
