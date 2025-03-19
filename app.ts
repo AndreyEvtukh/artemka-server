@@ -68,12 +68,13 @@ app.post('/api/send', async (req: Request, res: Response) => {
     //             subject: 'Hello World',
     //             html: '<strong>It works!</strong>'
     //         });
+    console.error(121212)
     const {name, subject, email, message} = req.body;
 
     if (!name || !subject || !email || !message) {
         return res.status(400).json({error: 'Missing required fields'});
     }
-    console.error(121212)
+
     try {
         const emailHtml = replacePlaceholders(templateContent, {
             name,
