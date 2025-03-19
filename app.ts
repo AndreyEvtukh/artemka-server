@@ -76,8 +76,9 @@ app.use("/api/send", (req, res, next) => {
 });
 
 
-app.get('/api/send', async (req: Request, res: Response) => {
+app.post('/api/send', async (req: Request, res: Response) => {
     console.error(111)
+    return res.status(200).json({ok: true});
 })
 
 
