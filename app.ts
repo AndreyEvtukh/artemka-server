@@ -44,7 +44,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use("/api/send", (req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-server.vercel.app/api/send');
+    res.setHeader('Access-Control-Allow-Origin', 'https://artemka-dev.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers',
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
