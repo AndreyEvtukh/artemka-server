@@ -130,15 +130,15 @@ app.post('/api/send', async (req: Request, res: Response) => {
 //     res.end();
 // });
 
-const server = http.createServer(app);
-server.listen(3001, () => {
-    console.log('Listening on - http://localhost:3000');
-    // resend.emails.send({
-    //         from: 'Acme <onboarding@resend.dev>',
-    //         to: [process.env.MAILTRAP_USER],
-    //         subject: 'Hello World',
-    //         html: '<strong>It works!</strong>'
-    //     });
-});
+// const server = http.createServer(app);
+// server.listen(3001, () => {
+//     console.log('Listening on - http://localhost:3000');
+//     // resend.emails.send({
+//     //         from: 'Acme <onboarding@resend.dev>',
+//     //         to: [process.env.MAILTRAP_USER],
+//     //         subject: 'Hello World',
+//     //         html: '<strong>It works!</strong>'
+//     //     });
+// });
 
 export default app;
