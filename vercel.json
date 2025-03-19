@@ -10,7 +10,7 @@
         {
             "source": "/api/send",
             "headers": [
-                { "key": "access-control-allow-origin", "value": "https://artemka-dev.vercel.app" },
+                { "key": "Access-Control-Allow-Origin", "value": "https://artemka-dev.vercel.app" },
                 { "key": "Access-Control-Allow-Headers", "value": "Accept, Content-Type" }
             ]
         }
