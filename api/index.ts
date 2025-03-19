@@ -3,6 +3,7 @@ import express from 'express'
 import {resend} from '../lib/resend';
 import bodyParser from "body-parser";
 import fs from "fs";
+import http from "http";
 import cors from "cors";
 
 const replacePlaceholders = require('../email/replacePlaceholders');
@@ -36,6 +37,7 @@ app.use(bodyParser.json())
 //     next();
 // });
 
+app.use(cors())
 app.get('/api/send', async (req: Request, res: Response) => {
     console.error(111)
 })
@@ -81,9 +83,9 @@ app.get('/api/send', async (req: Request, res: Response) => {
 //     res.end();
 // });
 
-// const server = http.createServer(app);
-// server.listen(3000, () => {
-//     console.log('Listening on http://localhost:3000');
-// });
+const server = http.createServer(app);
+server.listen(3001, () => {
+    console.log('Listening on http://localhost:3000');
+});
 
 export default app;

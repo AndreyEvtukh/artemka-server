@@ -42,32 +42,31 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 //     credentials: true,
 // }));
 
-app.use("/api/send", (req, res, next) => {
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
-    res.setHeader('Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-    );
-    // resend.emails.send({
-    //     from: 'Acme <onboarding@resend.dev>',
-    //     to: [process.env.MAILTRAP_USER],
-    //     subject: 'Hello World',
-    //     html: '<strong>It works!</strong>'
-    // });
-    resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
-        to: [process.env.MAILTRAP_USER],
-        subject: 'Hello World',
-        html: '<strong>It works!</strong>'
-    });
-
-    next();
-});
-
-app.post('/api/send', async (req: Request, res: Response) => {
+// app.use("/api/send", (req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'POST');
+//     res.setHeader('Access-Control-Allow-Headers',
+//         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+//     );
+//     // resend.emails.send({
+//     //     from: 'Acme <onboarding@resend.dev>',
+//     //     to: [process.env.MAILTRAP_USER],
+//     //     subject: 'Hello World',
+//     //     html: '<strong>It works!</strong>'
+//     // });
+//     // resend.emails.send({
+//     //     from: 'Acme <onboarding@resend.dev>',
+//     //     to: [process.env.MAILTRAP_USER],
+//     //     subject: 'Hello World',
+//     //     html: '<strong>It works!</strong>'
+//     // });
+//
+//     next();
+// });
+app.use(cors())
+app.get('/api/send', async (req: Request, res: Response) => {
     console.error(111)
-
 })
 
 
@@ -130,15 +129,15 @@ app.post('/api/send', async (req: Request, res: Response) => {
 //     res.end();
 // });
 
-// const server = http.createServer(app);
-// server.listen(3001, () => {
-//     console.log('Listening on - http://localhost:3000');
-//     // resend.emails.send({
-//     //         from: 'Acme <onboarding@resend.dev>',
-//     //         to: [process.env.MAILTRAP_USER],
-//     //         subject: 'Hello World',
-//     //         html: '<strong>It works!</strong>'
-//     //     });
-// });
+const server = http.createServer(app);
+server.listen(3001, () => {
+    console.log('Listening on - http://localhost:3001');
+    // resend.emails.send({
+    //         from: 'Acme <onboarding@resend.dev>',
+    //         to: [process.env.MAILTRAP_USER],
+    //         subject: 'Hello World',
+    //         html: '<strong>It works!</strong>'
+    //     });
+});
 
 export default app;
