@@ -130,7 +130,7 @@ app.post('/api/send', async (req: Request, res: Response) => {
 // });
 
 const server = http.createServer(app);
-server.listen(3000, () => {
+server.listen(3001, () => {
     console.log('Listening on - http://localhost:3000');
     // resend.emails.send({
     //         from: 'Acme <onboarding@resend.dev>',
