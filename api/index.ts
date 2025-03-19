@@ -36,7 +36,7 @@ app.use("/api/send", (req, res, next) => {
 });
 
 
-app.get('/api/send', async (req: Request, res: Response) => {
+app.post('/api/send', async (req: Request, res: Response) => {
     console.error(111)
 })
 
@@ -80,10 +80,10 @@ app.get('/api/send', async (req: Request, res: Response) => {
 //
 //     res.end();
 // });
-
-const server = http.createServer(app);
-server.listen(3000, () => {
-    console.log('Listening on http://localhost:3000');
-});
+//
+// const server = http.createServer(app);
+// server.listen(3000, () => {
+//     console.log('Listening on http://localhost:3000');
+// });
 
 export default app;
