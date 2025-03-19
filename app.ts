@@ -55,18 +55,19 @@ app.use("/api/send", (req, res, next) => {
     //     subject: 'Hello World',
     //     html: '<strong>It works!</strong>'
     // });
-
-    next();
-});
-
-app.post('/api/send', async (req: Request, res: Response) => {
-    console.error(111)
     resend.emails.send({
         from: 'Acme <onboarding@resend.dev>',
         to: [process.env.MAILTRAP_USER],
         subject: 'Hello World',
         html: '<strong>It works!</strong>'
     });
+
+    next();
+});
+
+app.post('/api/send', async (req: Request, res: Response) => {
+    console.error(111)
+
 })
 
 
