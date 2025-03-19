@@ -141,7 +141,7 @@ app.get('/api/send', async (req: Request, res: Response) => {
 // });
 
 const server = http.createServer(app);
-server.listen(3001, () => {
+server.listen(3000, () => {
     console.log('Listening on - http://localhost:3001');
     // resend.emails.send({
     //         from: 'Acme <onboarding@resend.dev>',
