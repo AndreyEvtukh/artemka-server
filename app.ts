@@ -69,6 +69,7 @@ app.use("/api/send", (req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers',
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
     );
@@ -142,7 +143,7 @@ app.get('/api/send', async (req: Request, res: Response) => {
 
 const server = http.createServer(app);
 server.listen(3000, () => {
-    console.log('Listening on - http://localhost:3001');
+    console.log('Listening on - http://localhost:3000');
     // resend.emails.send({
     //         from: 'Acme <onboarding@resend.dev>',
     //         to: [process.env.MAILTRAP_USER],
