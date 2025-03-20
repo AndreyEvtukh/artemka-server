@@ -5,13 +5,13 @@ const app: Application = express();
 
 app.use(cors(
     {
-        origin: "https://artemka-dev.vercel.app"
+        origin: "*"
     }
 ))
 
 app.post("/api/send", (req: Request, res: Response) => {
-    console.error(req)
-    return res.status(200).end();
+    console.error(req.headers.host)
+    return res.status(200).json({ok: true}).end();
 })
 
 app.listen(3000)
