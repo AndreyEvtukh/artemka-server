@@ -9,7 +9,7 @@ import __app from "../__app";
 
 const replacePlaceholders = require('../email/replacePlaceholders');
 const app: Application = express();
-app.use(cors())
+// app.use(cors())
 
 require('dotenv').config();
 const templatePath = 'email/email-template.html';
@@ -19,7 +19,7 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.options('/api/send', cors()) // enable pre-flight request for DELETE request
+// app.options('/api/send', cors()) // enable pre-flight request for DELETE request
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
