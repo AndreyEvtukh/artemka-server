@@ -3,7 +3,11 @@ import express from 'express'
 import cors from "cors";
 const app: Application = express();
 
-app.use(cors())
+app.use(cors(
+    {
+        origin: "https://artemka-dev.vercel.app"
+    }
+))
 
 app.post("/api/send", (req: Request, res: Response) => {
     console.error(req)
