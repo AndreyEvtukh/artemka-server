@@ -3,17 +3,31 @@ import express from 'express'
 import cors from "cors";
 const app: Application = express();
 
-app.use(cors(
-    {
-        origin: "*"
+app.options('/api/send', cors()) // enable pre-flight request for DELETE request
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+        'Access-Control-Allow-Methods',
+        'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+    );
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+    );
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
     }
-))
+    next();
+});
 
 app.post("/api/send", (req: Request, res: Response) => {
     console.error(req.headers.host)
     return res.status(200).json({ok: true}).end();
 })
 
+//heroku config:add \ HEROKU_OAUTH_ID=625595d0-9b97-4d31-8225-5f325e048584 \ HEROKU_OAUTH_SECRET=171bec24-9c16-47bb-8101-3f0657878877
 app.listen(3000)
 //
 //
