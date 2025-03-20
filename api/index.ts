@@ -12,7 +12,7 @@ const app: Application = express();
 // app.use(cors())
 
 require('dotenv').config();
-const templatePath = 'email/email-template.html';
+const templatePath = '../email/email-template.html';
 
 
 const templateContent = fs.readFileSync(templatePath, 'utf-8');
@@ -43,8 +43,7 @@ app.get("/api/send", (req: Request, res: Response) => {
     return res.status(200).json({ok: true}).end();
 })
 
-//heroku config:add \ HEROKU_OAUTH_ID=625595d0-9b97-4d31-8225-5f325e048584 \ HEROKU_OAUTH_SECRET=171bec24-9c16-47bb-8101-3f0657878877
-app.listen(3000)
+// app.listen(3000)
 
 // app.use(cors({
 //     origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
