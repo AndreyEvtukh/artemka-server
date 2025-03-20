@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import fs from "fs";
 import http from "http";
 import cors from "cors";
+import __app from "../__app";
 
 const replacePlaceholders = require('../email/replacePlaceholders');
 const app: Application = express();
@@ -34,6 +35,25 @@ app.use(cors())
 //     );
 //     next();
 // });
+
+app.use((req, res, next) => {
+    console.error(5655)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+        'Access-Control-Allow-Methods',
+        'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+    );
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+    );
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+});
 
 app.post('/api/send', async (req: Request, res: Response) => {
     // return res.status(200).json({"ok": true});
