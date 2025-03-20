@@ -16,7 +16,7 @@ const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-// app.use(cors())
+app.use(cors())
 
 // app.use(cors({
 //     origin: ['https://artemka-dev.vercel.app', 'https://artemka-server.vercel.app'],
