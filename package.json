@@ -11,6 +11,7 @@
     "bugs": {
         "url": "https://github.com/AndreyEvtukh/artemka-server/issues"
     },
+    "main": "app.ts",
     "homepage": "https://github.com/AndreyEvtukh/artemka-server#readme",
     "dependencies": {
         "body-parser": "^1.20.3",
