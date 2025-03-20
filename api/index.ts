@@ -24,26 +24,19 @@ app.use(bodyParser.json())
 //     allowedHeaders: ['Authorization'],
 //     credentials: true,
 // }));
-app.use(cors())
-app.use("/api/send", (req, res, next) => {
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-    );
-    next();
-});
+// app.use(cors())
+// app.use("/api/send", (req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+//     res.setHeader('Access-Control-Allow-Headers',
+//         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+//     );
+//     next();
+// });
 
 app.post('/api/send', async (req: Request, res: Response) => {
-    resend.emails.send({
-                from: 'Acme <onboarding@resend.dev>',
-                to: [process.env.MAILTRAP_USER],
-                subject: 'Hello World',
-                html: '<strong>It works!</strong>'
-            });
-    console.error(121212)
-    return res.status(200).json({"ok": true});
+    // return res.status(200).json({"ok": true});
 
     const {name, subject, email, message} = req.body;
 
@@ -65,12 +58,12 @@ app.post('/api/send', async (req: Request, res: Response) => {
             subject: `New message from ${name} with subject ${subject}`,
             html: emailHtml
         };
-        // const {error} = await resend.emails.send(emailData);
+        const {error} = await resend.emails.send(emailData);
 
         // if (error) {
         //     return res.status(400).json({error});
         // }
-
+        console.error(req.body)
         res.status(200).json({ok: true});
     } catch (error) {
         res.status(500).json({ok: false, error: error});
