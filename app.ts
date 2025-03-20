@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/api/send", (req: Request, res: Response) => {
+app.get("/api/send", (req: Request, res: Response) => {
     console.error(req.headers.host)
     return res.status(200).json({ok: true}).end();
 })
