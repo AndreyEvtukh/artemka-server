@@ -12,6 +12,7 @@ dotenv.config();
 const resend = new Resend("re_iS94Jicb_P5nyUiNgsLKnkk75sx3tMiSN");
 // app.use(express.urlencoded({extended: true}));
 // app.use(express.json());
+app.use(Cors());
 
 app.use((req: Request, res: Response, next) => {
     // console.error(req.body)
@@ -34,7 +35,7 @@ app.use((req: Request, res: Response, next) => {
 });
 
 
-app.post("/api/send", Cors({origin: true}), (req, res) => {
+app.post("/api/send", (req, res) => {
     console.log("/send")
     resend.emails.send({
         from: "Vercel <vercel@resend.dev>",
